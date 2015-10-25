@@ -38,7 +38,7 @@ public class Breakr {
             throw ex;
         } finally {
             long duration = System.currentTimeMillis() - start;
-            if (duration > TIMEOUT_IN_MS) {
+            if (duration > timeout) {
                 errorCounter++;
             }
         }
