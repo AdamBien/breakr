@@ -6,6 +6,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -23,12 +24,12 @@ public class BreakrIT {
         WebTarget target = provider.target();
         Response response = target.
                 path("slow").
-                path("10").
+                path("5").
                 request().
                 get(Response.class);
         assertThat(response, successful());
         String result = response.readEntity(String.class);
-        assertThat(result, is("+"));
+        assertTrue(result.isEmpty());
     }
 
     @Test
@@ -36,7 +37,7 @@ public class BreakrIT {
         WebTarget target = provider.target();
         Response response = target.
                 path("brittle").
-                path("10").
+                path("5").
                 request().
                 get(Response.class);
         assertThat(response, successful());
