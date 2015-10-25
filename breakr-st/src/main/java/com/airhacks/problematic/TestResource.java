@@ -23,8 +23,11 @@ public class TestResource {
     @GET
     @Path("slow/{iterations}")
     public String slow(@PathParam("iterations") int iterations) {
-        this.slow.tooSlow();
-        return "+";
+        String lastValue = null;
+        for (int i = 0; i < iterations; i++) {
+            lastValue = this.slow.tooSlow();
+        }
+        return lastValue;
     }
 
     @GET
@@ -39,19 +42,6 @@ public class TestResource {
             }
         }
         return "+";
-    }
-
-    @GET
-    @Path("working/{iterations}")
-    public String working(@PathParam("iterations") int iterations) {
-        String retVal = "";
-        for (int i = 0; i < iterations; i++) {
-            try {
-                retVal += this.brittle.test(false);
-            } catch (Exception ex) {
-            }
-        }
-        return "+" + retVal;
     }
 
 }
