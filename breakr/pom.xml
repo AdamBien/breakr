@@ -1,10 +1,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
     <groupId>com.airhacks</groupId>
     <artifactId>breakr</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <description>A minimalistic implementation of the Cirquit Breaker Pattern</description>
+    <url>https://github.com/AdamBien/breakr</url>
+    <organization>
+        <name>Adam Bien</name>
+        <url>http://adam-bien.com</url>
+    </organization>
+    <inceptionYear>2015</inceptionYear>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Adam Bien</name>
+            <organization>adam-bien.com</organization>
+            <organizationUrl>http://adam-bien.com</organizationUrl>
+        </developer>
+    </developers>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -14,11 +40,62 @@
         </dependency>
     </dependencies>
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.8</version>
+                <configuration>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>add-apache-headers</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>apache_v2</licenseName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.4</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+        </plugins>
         <finalName>breakr</finalName>
+
     </build>
+    <scm>
+        <connection>scm:git:git@github.com:AdamBien/breakr.git</connection>
+        <url>scm:git:git@github.com:AdamBien/breakr.git</url>
+        <developerConnection>scm:git:git@github.com:AdamBien/breakr.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 </project>
