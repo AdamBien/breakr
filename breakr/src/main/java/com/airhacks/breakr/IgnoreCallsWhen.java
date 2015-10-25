@@ -15,5 +15,5 @@ public @interface IgnoreCallsWhen {
 
     long timeout() default 1000;
 
-    long failures() default 5;
+    long failures() default 3;
 }

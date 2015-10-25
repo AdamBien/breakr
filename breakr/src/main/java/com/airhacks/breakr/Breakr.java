@@ -15,7 +15,6 @@ public class Breakr {
 
     @AroundInvoke
     public Object guard(InvocationContext ic) throws Exception {
-        long start = System.currentTimeMillis();
         long maxNbrOfFailures = FAILURES_COUNT;
         long timeout = TIMEOUT_IN_MS;
 
@@ -28,6 +27,7 @@ public class Breakr {
             timeout = configuration.timeout();
         }
 
+        long start = System.currentTimeMillis();
         try {
             if (errorCounter >= maxNbrOfFailures) {
                 return null;
@@ -38,7 +38,7 @@ public class Breakr {
             throw ex;
         } finally {
             long duration = System.currentTimeMillis() - start;
-            if (duration > timeout) {
+            if (duration >= timeout) {
                 errorCounter++;
             }
         }
