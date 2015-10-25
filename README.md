@@ -46,9 +46,7 @@ public class Slow {
     public String tooSlow() {
         try {
             Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Slow.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (InterruptedException ex) {}
         return "Slow: " + System.currentTimeMillis();
     }
 
