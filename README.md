@@ -7,11 +7,11 @@ A Minimalistic Circuit Breaker for Java EE applications
 
 ```java
 @Singleton
-<b>@Interceptors(Breakr.class)</b>
+@Interceptors(Breakr.class)
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class Brittle {
 
-    <b>@IgnoreCallsWhen(failures = 2)</b>
+    @IgnoreCallsWhen(failures = 2)
     public String test(boolean exception) throws Exception {
         if (exception) {
             throw new Exception("For test purposes only");
@@ -27,10 +27,10 @@ public class Brittle {
 ```java
 
 @Singleton
-<b>@Interceptors(Breakr.class)</b>
+@Interceptors(Breakr.class)
 public class Slow {
 
-    <b>@IgnoreCallsWhen(slowerThanMillis = 10)</b>
+    @IgnoreCallsWhen(slowerThanMillis = 10)
     public String tooSlow() {
         try {
             Thread.sleep(100);
