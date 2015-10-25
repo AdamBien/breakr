@@ -24,7 +24,7 @@ public class Breakr {
 
         if (configuration != null) {
             maxNbrOfFailures = configuration.failures();
-            timeout = configuration.timeout();
+            timeout = configuration.slowerThanMillis();
         }
 
         long start = System.currentTimeMillis();

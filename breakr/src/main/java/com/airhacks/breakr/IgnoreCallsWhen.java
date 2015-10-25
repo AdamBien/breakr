@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IgnoreCallsWhen {
 
-    long timeout() default 1000;
+    long slowerThanMillis() default 1000;
 
     long failures() default 3;
 }

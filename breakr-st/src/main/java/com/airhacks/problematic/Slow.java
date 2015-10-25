@@ -15,7 +15,7 @@ import javax.interceptor.Interceptors;
 @Interceptors(Breakr.class)
 public class Slow {
 
-    @IgnoreCallsWhen(timeout = 10)
+    @IgnoreCallsWhen(slowerThanMillis = 10)
     public String tooSlow() {
         try {
             Thread.sleep(100);

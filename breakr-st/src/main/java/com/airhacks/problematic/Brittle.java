@@ -19,7 +19,7 @@ public class Brittle {
     @IgnoreCallsWhen(failures = 2)
     public String test(boolean exception) throws Exception {
         if (exception) {
-            throw new Exception("Here is your exception");
+            throw new Exception("For test purposes only");
         }
         return "works " + System.currentTimeMillis();
     }
