@@ -1,6 +1,18 @@
 # breakr
 A Minimalistic Circuit Breaker for Java EE applications
 
+#Installation
+
+```xml
+
+        <dependency>
+            <groupId>com.airhacks</groupId>
+            <artifactId>breakr</artifactId>
+            <version>[CURRENT_VERSION]</version>
+        </dependency>
+
+```
+
 #Usage
 
 ## Ignoring exception throwers
