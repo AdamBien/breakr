@@ -34,7 +34,6 @@ package com.airhacks.breakr;
  * limitations under the License.
  * #L%
  */
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
