@@ -32,8 +32,23 @@ public class BreakrIT {
         String result = response.readEntity(String.class);
         assertTrue(result.isEmpty());
 
+        //reset of other service shouldn't have any effect
+        target.path("brittle").
+                request().
+                delete();
+
+        result = target.
+                path("slow").
+                path("1").
+                request().
+                get(String.class);
+        assertTrue(result.isEmpty());
+
         //reset
-        target.request().delete();
+        target.path("slow").
+                request().
+                delete();
+
         result = target.
                 path("slow").
                 path("2").
