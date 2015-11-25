@@ -9,9 +9,9 @@ package com.airhacks.breakr;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,21 +25,23 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
 /**
+ * Put the annotation <code>@Interceptors(Breakr.class)</code> on a CDI or EJB
  *
+ * @Singleton to activate the call monitoring functionality.
+ *
+ * @see CloseCircuit
+ * @see IgnoreCallsWhen
  * @author airhacks.com
  */
 public class Breakr {
-
-    private static final long FAILURES_COUNT = 5;
-    private static final long TIMEOUT_IN_MS = 1000;
 
     @Inject
     Circuit circuit;
 
     @AroundInvoke
     public Object guard(InvocationContext ic) throws Exception {
-        long maxFailures = FAILURES_COUNT;
-        long maxDuration = TIMEOUT_IN_MS;
+        long maxFailures = IgnoreCallsWhen.MAX_FAILURES;
+        long maxDuration = IgnoreCallsWhen.TIMEOUT;
         Method method = ic.getMethod();
 
         boolean closeCircuit = method.isAnnotationPresent(CloseCircuit.class);
