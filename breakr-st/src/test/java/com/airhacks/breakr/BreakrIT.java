@@ -21,7 +21,7 @@ public class BreakrIT {
     public JAXRSClientProvider provider = JAXRSClientProvider.buildWithURI("http://localhost:8080/breakr-st/resources/tests");
 
     @Test
-    public void timeout() {
+    public void timeoutWithReset() {
         WebTarget target = provider.target();
         Response response = target.
                 path("slow").
@@ -32,7 +32,7 @@ public class BreakrIT {
         String result = response.readEntity(String.class);
         assertTrue(result.isEmpty());
 
-        //reset of other service shouldn't have any effect
+        //reset of unrelated service shouldn't have any effect
         target.path("brittle").
                 request().
                 delete();
@@ -44,7 +44,7 @@ public class BreakrIT {
                 get(String.class);
         assertTrue(result.isEmpty());
 
-        //reset
+        //reset of the related service should close the circuit
         target.path("slow").
                 request().
                 delete();
@@ -67,7 +67,34 @@ public class BreakrIT {
                 get(Response.class);
         assertThat(response, successful());
         String result = response.readEntity(String.class);
-        assertThat(result, is("+"));
+        assertTrue(result.isEmpty());
+
+        //reset unrelated circuit
+        target.path("slow").
+                request().
+                delete();
+
+        result = target.
+                path("brittle").
+                path("1").
+                request().
+                get(String.class);
+
+        assertTrue(result.isEmpty());
+
+        //reset circuit
+        target.path("brittle").
+                request().
+                delete();
+
+        result = target.
+                path("brittle").
+                path("1").
+                request().
+                get(String.class);
+
+        assertThat(result, is("-"));
+
     }
 
 }

@@ -34,15 +34,17 @@ public class TestResource {
     @GET
     @Path("brittle/{iterations}")
     public String brittle(@PathParam("iterations") int iterations) {
+        String result = "-";
         for (int i = 0; i < iterations; i++) {
             try {
-                this.brittle.test(true);
+                result = "-";
+                result = this.brittle.test(true);
             } catch (Throwable t) {
                 System.out.println(" Message: " + t.getMessage());
                 System.out.println("-");
             }
         }
-        return "+";
+        return result;
     }
 
     @DELETE
