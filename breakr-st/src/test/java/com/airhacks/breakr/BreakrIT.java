@@ -5,6 +5,7 @@ import com.airhacks.rulz.jaxrsclient.JAXRSClientProvider;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import org.junit.Rule;
@@ -30,6 +31,15 @@ public class BreakrIT {
         assertThat(response, successful());
         String result = response.readEntity(String.class);
         assertTrue(result.isEmpty());
+
+        //reset
+        target.request().delete();
+        result = target.
+                path("slow").
+                path("2").
+                request().
+                get(String.class);
+        assertThat(result, startsWith("Slow"));
     }
 
     @Test

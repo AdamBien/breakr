@@ -1,6 +1,7 @@
 package com.airhacks.problematic;
 
 import com.airhacks.breakr.Breakr;
+import com.airhacks.breakr.CloseCircuit;
 import com.airhacks.breakr.IgnoreCallsWhen;
 import javax.ejb.Singleton;
 import javax.interceptor.Interceptors;
@@ -20,6 +21,10 @@ public class Slow {
         } catch (InterruptedException ex) {
         }
         return "Slow: " + System.currentTimeMillis();
+    }
+
+    @CloseCircuit
+    public void reset() {
     }
 
 }

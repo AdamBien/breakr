@@ -1,6 +1,7 @@
 package com.airhacks.problematic;
 
 import com.airhacks.breakr.Breakr;
+import com.airhacks.breakr.CloseCircuit;
 import com.airhacks.breakr.IgnoreCallsWhen;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -22,5 +23,9 @@ public class Brittle {
             throw new Exception("For test purposes only");
         }
         return "works " + System.currentTimeMillis();
+    }
+
+    @CloseCircuit
+    public void reset() {
     }
 }

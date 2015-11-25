@@ -2,6 +2,7 @@ package com.airhacks.problematic;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -42,6 +43,12 @@ public class TestResource {
             }
         }
         return "+";
+    }
+
+    @DELETE
+    public void reset() {
+        this.brittle.reset();
+        this.slow.reset();
     }
 
 }
