@@ -46,8 +46,14 @@ public class TestResource {
     }
 
     @DELETE
-    public void reset() {
+    @Path("brittle")
+    public void resetBrittle() {
         this.brittle.reset();
+    }
+
+    @DELETE
+    @Path("slow")
+    public void resetSlow() {
         this.slow.reset();
     }
 
