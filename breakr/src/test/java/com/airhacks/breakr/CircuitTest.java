@@ -34,7 +34,6 @@ package com.airhacks.breakr;
  * limitations under the License.
  * #L%
  */
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -64,7 +63,7 @@ public class CircuitTest {
         open = this.cut.isOpen(1);
         assertTrue(open);
 
-        this.cut.onFailureCounterValue(0);
+        this.cut.reset();
 
         open = this.cut.isOpen(1);
         assertFalse(open);
@@ -80,7 +79,7 @@ public class CircuitTest {
         open = this.cut.isOpen(1);
         assertTrue(open);
 
-        this.cut.onFailureCounterValue(0);
+        this.cut.reset();
 
         open = this.cut.isOpen(1);
         assertFalse(open);

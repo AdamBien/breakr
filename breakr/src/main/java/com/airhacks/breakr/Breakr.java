@@ -41,14 +41,20 @@ public class Breakr {
         long maxFailures = FAILURES_COUNT;
         long maxDuration = TIMEOUT_IN_MS;
         Method method = ic.getMethod();
+
+        boolean closeCircuit = method.isAnnotationPresent(CloseCircuit.class);
+        if (closeCircuit) {
+            this.circuit.reset();
+        }
+
         IgnoreCallsWhen configuration = method.
                 getAnnotation(IgnoreCallsWhen.class);
         if (configuration != null) {
             maxFailures = configuration.failures();
             maxDuration = configuration.slowerThanMillis();
         }
-
         long start = System.currentTimeMillis();
+
         try {
             if (circuit.isOpen(maxFailures)) {
                 return null;
@@ -59,7 +65,6 @@ public class Breakr {
             throw ex;
         } finally {
             long duration = System.currentTimeMillis() - start;
-
             if (duration > maxDuration) {
                 this.circuit.newTimeout(duration);
             }

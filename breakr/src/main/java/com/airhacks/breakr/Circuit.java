@@ -36,7 +36,6 @@ package com.airhacks.breakr;
  */
 import java.util.concurrent.atomic.AtomicLong;
 import javax.annotation.PostConstruct;
-import javax.enterprise.event.Observes;
 
 /**
  *
@@ -63,8 +62,8 @@ public class Circuit {
         return (this.failureCounter.get() > maxFailures);
     }
 
-    public void onFailureCounterValue(@Observes @FailureCounterValue long value) {
-        failureCounter.set(value);
+    public void reset() {
+        failureCounter.set(0);
     }
 
 }
