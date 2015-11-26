@@ -1,6 +1,9 @@
 # breakr
 A Minimalistic Circuit Breaker for Java EE applications
 
+breakr comes as a single, 6 kB jar without any further configuration. Just add the dependency below to your `pom.xml` and 
+put the annotation `@Interceptors(Breakr.class)` on a brittle class.
+
 #Installation
 
 ```xml
