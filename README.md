@@ -4,7 +4,7 @@ A Minimalistic [Circuit Breaker](http://martinfowler.com/bliki/CircuitBreaker.ht
 breakr comes as a single, 6 kB jar without any further configuration. Just add the dependency below to your `pom.xml` and 
 put the annotation `@Interceptors(Breakr.class)` on a brittle class.
 
-Checkout [porcupine](https://github.com/AdamBien/porcupine) for bulkheads and handshaking implementation.
+Checkout [porcupine](https://github.com/AdamBien/porcupine) for monitorable threadpools (bulkheads and handshaking) implementation.
 
 #Installation
 
