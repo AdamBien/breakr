@@ -11,3 +11,4 @@ buildNumber.properties
 /breakr/releaseAndUpload.sh
 /breakr-st/nb-configuration.xml
 nbproject/
+/breakr/nbactions.xml
