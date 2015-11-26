@@ -40,12 +40,17 @@ public @interface IgnoreCallsWhen {
 
     /**
      * 1s max execution time of any public method of the monitored class.
+     *
+     * @return The overridden maximal execution time. Slower calls will increase
+     * the counter and eventually close the circuit.
      */
     long slowerThanMillis() default TIMEOUT;
 
     /**
-     * The max number of failures (exception occurrences and timeouts) before
-     * the circuit opens.
+     * The maximal number of failures (exception occurrences and timeouts)
+     * before the circuit opens.
+     *
+     * @return the threshold which closes the circuit.
      */
     long failures() default MAX_FAILURES;
 }

@@ -26,8 +26,7 @@ import javax.interceptor.InvocationContext;
 
 /**
  * Put the annotation <code>@Interceptors(Breakr.class)</code> on a CDI or EJB
- *
- * @Singleton to activate the call monitoring functionality.
+ * <code>@Singleton</code> to activate the call monitoring functionality.
  *
  * @see CloseCircuit
  * @see IgnoreCallsWhen
