@@ -59,7 +59,7 @@ public class Circuit {
     }
 
     public boolean isOpen(long maxFailures) {
-        return (this.failureCounter.get() > maxFailures);
+        return (this.failureCounter.get() >= maxFailures);
     }
 
     public void reset() {
