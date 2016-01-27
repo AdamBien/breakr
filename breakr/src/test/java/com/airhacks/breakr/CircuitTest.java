@@ -55,9 +55,10 @@ public class CircuitTest {
 
     @Test
     public void exceptionExcalation() {
+        assertFalse(this.cut.isOpen(1));
         this.cut.newException(null);
         boolean open = this.cut.isOpen(1);
-        assertFalse(open);
+        assertTrue(open);
 
         this.cut.newException(null);
         open = this.cut.isOpen(1);
@@ -71,18 +72,17 @@ public class CircuitTest {
 
     @Test
     public void timeoutExcalation() {
+        assertFalse(this.cut.isOpen(1));
         this.cut.newTimeout(0);
-        boolean open = this.cut.isOpen(1);
-        assertFalse(open);
+        assertTrue(this.cut.isOpen(1));
 
         this.cut.newTimeout(0);
-        open = this.cut.isOpen(1);
-        assertTrue(open);
+        assertTrue(this.cut.isOpen(1));
 
         this.cut.reset();
 
-        open = this.cut.isOpen(1);
-        assertFalse(open);
+        this.cut.isOpen(1);
+        assertFalse(this.cut.isOpen(1));
     }
 
 }
