@@ -34,7 +34,6 @@ package com.airhacks.breakr;
  * limitations under the License.
  * #L%
  */
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Specializes;
 
@@ -55,10 +54,6 @@ public class CustomCircuit extends Circuit {
 
     public long getFailureCount() {
         return failureCounter.get();
-    }
-
-    public boolean isOpen() {
-        return open;
     }
 
     public void setOpen(boolean open) {

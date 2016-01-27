@@ -24,9 +24,9 @@ package com.airhacks.breakr;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,7 +37,6 @@ package com.airhacks.breakr;
 import javax.inject.Inject;
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,12 +56,10 @@ public class BreakTest {
 
     @Test
     public void configurableOpening() {
-        assertFalse(circuit.isOpen());
         long counter = circuit.getFailureCount();
         assertThat(counter, is(0l));
 
         unstable.tooSlow();
-        assertFalse(circuit.isOpen());
         assertThat(circuit.getFailureCount(), is(1l));
 
         unstable.tooSlow();
